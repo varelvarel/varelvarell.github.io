@@ -1,0 +1,108 @@
+body {
+    background: #112031;
+    
+}
+
+
+.logo {
+    color: whitesmoke;
+    font-family: monospace;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #345B63;
+    background-size: 30px;
+}
+
+hr {
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+}
+
+.menu {
+    color: whitesmoke;
+    font-family: monospace;
+    font-size: 30px;
+   
+}
+
+.color {
+    color: #345B63;
+    font-size: 20x;
+    margin: 10px;
+    border: solid;
+    border-width: 1px;
+    box-shadow: 5px;
+}
+
+.color:hover {
+    color: #345B63;
+}
+
+.color:link {
+    color: #345B63;
+}
+
+.color:active {
+    color: #345B63;
+}
+
+.color:visited {
+    color: #acb6b8;
+}
+
+.colorlist {
+    color: #345B63;
+    font-size: 20x;
+    margin: 20px;
+    
+}
+
+.colorlist:hover {
+    color: #345B63;
+}
+
+.colorlist:link {
+    color: #345B63;
+}
+
+.colorlist:active {
+    color: #345B63;
+}
+
+.colorlist:visited {
+    color: #345B63;
+}
+
+
+.wih {
+    color: whitesmoke;
+    font-family: monospace;
+    margin: 50px;
+}
+
+.typehacker {
+    color: white;
+    font-family: monospace;
+    margin: 50px;
+}
+
+.nethunter {
+    margin: 50px;
+    font-family: monospace;
+    color: whitesmoke;
+}
+
+.tips {
+    color: whitesmoke;
+}
+
+nav {
+    float: right;
+    font-family: monospace;
+    margin: 0;
+    font-size: 25px;
+    border-spacing: 5px;
+    
+}
+

