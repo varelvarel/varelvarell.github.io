@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>nethunter</title>
+        <style>
+
+            @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap');
+ 
+            body {
+                background-color: black;
+            }
+
+            .netinstall {
+                 color: green;
+                 font-family: 'Azeret Mono', monospace;
+                 font-size: 20px;
+                 
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <div class="netinstall">
+            <h2>How to install nethunter on termux</h2>
+            <p>Instal Kali NetHunter di perangkat Android apa pun yang tidak di-root tanpa membatalkan garansi. <br>
+                <br>
+                cara install : <br>
+                <br>
+                kali@kali:~$ termux-setup-storage<br>
+                kali@kali:~$ pkg install wget<br>
+                kali@kali:~$ wget -O install-nethunter-termux https://offs.ec/2MceZWr<br>
+                kali@kali:~$ chmod +x install-nethunter-termux<br>
+                kali@kali:~$ ./install-nethunter-termux<br>
+                <br>
+                use : <br>
+                <br>
+                $ nethunter<br>
+                <br>
+                Tips :<br>
+                <br>
+                Jalankan Sudo apt update && Sudo apt full-upgrade -y hal pertama setelah instalasi untuk memperbarui Kali.<br>
+                Jika Anda memiliki banyak ruang penyimpanan, Anda mungkin ingin menjalankan Sudo apt install -y kali-linux-default juga.<br><br>
+                <br>
+                semua alat pengujian penetrasi harus berfungsi tetapi beberapa mungkin memiliki batasan, mis. metasploit berfungsi tetapi tidak memiliki dukungan basis data. Jika Anda menemukan alat yang tidak berfungsi, harap posting di forum kami.<br>
+                <br>
+                Beberapa utilitas seperti "atas" tidak akan berjalan pada ponsel yang tidak di-root.<br>
+                <br>
+                Pengguna non-root masih memiliki akses root di chroot. Itu hal yang pro. Sadarilah itu.<br>
+                Ponsel Galaxy dapat mencegah pengguna non-root menggunakan sudo.<br>
+                Cukup gunakan "su -c" sebagai gantinya.<br>
+                Lakukan pencadangan rutin rootf Anda dengan menghentikan semua sesi nethunter dan ketik berikut ini dalam sesi termux: tar -cJf kali-arm64.tar.xz kali-arm64 && mv kali-arm64.tar.xz storage/downloads Itu akan menempatkan cadangan di folder unduhan Android Anda.<br>
+                <br>
+                Catatan: pada perangkat yang lebih lama, ubah "arm64" menjadi "armhf"<br>
+                Silakan bergabung dengan kami di forum kami untuk bertukar tips dan ide dan menjadi bagian dari komunitas yang berusaha untuk membuat NetHunter lebih baik.<br>
+                
+                </p>
+        </div>
+        <a href="/web/index.html">BACK TO HOME</a>
+    </body>
+</html>
